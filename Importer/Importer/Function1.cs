@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-namespace MassImportProcessor
+namespace Importer
 {
     public class Function1
     {
@@ -15,7 +15,7 @@ namespace MassImportProcessor
         }
 
         [Function(nameof(Function1))]
-        public async Task Run([BlobTrigger("samples-workitems/{name}", Connection = "AzureGameShopStorage")] Stream stream, string name)
+        public async Task Run([BlobTrigger("importer-csvs/{name}", Connection = "")] Stream stream, string name)
         {
             using var blobStreamReader = new StreamReader(stream);
             var content = await blobStreamReader.ReadToEndAsync();
