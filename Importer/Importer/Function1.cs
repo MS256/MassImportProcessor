@@ -15,7 +15,7 @@ namespace Importer
         }
 
         [Function(nameof(Function1))]
-        public async Task Run([BlobTrigger("importer-csvs/{name}", Connection = "")] Stream stream, string name)
+        public async Task Run([BlobTrigger("importer-csvs/{name}", Connection = "AzureWebJobsStorage")] Stream stream, string name)
         {
             using var blobStreamReader = new StreamReader(stream);
             var content = await blobStreamReader.ReadToEndAsync();
